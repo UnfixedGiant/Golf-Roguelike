@@ -38,7 +38,7 @@ public class Ball : MonoBehaviour
 // can get some kind of upgrades to reduce time between each ball hit
     private bool IsReady()
     {
-        return rb.velocity.magnitude <= 0.1f;
+        return rb.velocity.magnitude <= 0.3f;
     }
 
 
