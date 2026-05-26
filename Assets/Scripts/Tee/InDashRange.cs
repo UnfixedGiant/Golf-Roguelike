@@ -5,34 +5,21 @@ using UnityEngine;
 public class InDashRange : MonoBehaviour
 {
     public bool DashRange { get; private set; }
-
     public Vector2 DirectionToPlayer { get; private set; }
 
-    [SerializeField]
-    private float DashableRange;
+    [SerializeField] private float dashableRange = 3f;
 
     private Transform player;
 
-    // Start is called before the first frame update
     private void Awake()
     {
         player = FindObjectOfType<Ball>().transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector2 enemyToPlayerVector = player.position - transform.position;
-        DirectionToPlayer = enemyToPlayerVector.normalized;
-
-
-        if (enemyToPlayerVector.magnitude <= DashableRange)
-        {
-            DashRange = true;
-        }
-        else
-        {
-            DashRange = false;
-        }
+        Vector2 enemyToPlayer = player.position - transform.position;
+        DirectionToPlayer = enemyToPlayer.normalized;
+        DashRange = enemyToPlayer.magnitude <= dashableRange;
     }
 }
