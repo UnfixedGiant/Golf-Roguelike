@@ -12,6 +12,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private float maxPower = 10f;
     [SerializeField] private float power = 2f;
     private bool isDragging;
+
+
     private void Update()
     {
         PlayerInput();
