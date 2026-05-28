@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HealthController : MonoBehaviour
 {
@@ -15,18 +16,34 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    public bool IsInvincible { get; set; }
+
+    public UnityEvent OnDeath;
+    public UnityEvent OnDamaged;
+
+
     public void TakeDamage (float damageAmount)
     {
-        currentHealth -= damageAmount;
 
-        if (currentHealth == 0)
+        if (IsInvincible)
         {
             return;
         }
         
+        currentHealth -= damageAmount;
+        
         if (currentHealth < 0)
         {
             currentHealth = 0;
+        }
+        
+        if (currentHealth == 0)
+        {
+            OnDeath.Invoke();
+        }
+        else
+        {
+            OnDamaged.Invoke();
         }
     }
 
