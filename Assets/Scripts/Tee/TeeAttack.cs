@@ -14,7 +14,8 @@ public class EnemyDamage : MonoBehaviour
 
     private void TryDealDamage(GameObject target)
     {
-        
+        if (!target.CompareTag("Player")) return;
+
         HealthController health = target.GetComponent<HealthController>();
         if (health == null) return;
 
