@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -7,10 +8,14 @@ public class Ball : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LineRenderer lr;
+    [SerializeField] private GameObject fireExploPrefab;
 
     [Header("Attributes")]
     [SerializeField] private float maxPower = 10f;
     [SerializeField] private float power = 2f;
+    [Header("Abilities")]
+    [SerializeField] private float speedThreshold = 2f;
+
     private bool isDragging;
 
 
@@ -65,6 +70,33 @@ public class Ball : MonoBehaviour
 
         Vector2 dir = (Vector2) transform.position - pos;
         rb.velocity = Vector2.ClampMagnitude(dir * power, maxPower);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (!coll.gameObject.CompareTag("Wall"))
+        {
+            return;
+        }
+        if (rb.velocity.magnitude < speedThreshold)
+        {
+            return;
+        }
+
+        fireExplosion(coll.contacts[0].point);
+
+    }
+
+    private void fireExplosion(Vector2 pos)
+    {
+        if (fireExploPrefab == null)
+        {
+            return;
+        }
+        
+        GameObject explosion = Instantiate(fireExploPrefab, pos, Quaternion.identity);
+        Destroy(explosion, 0.5f);
     }
 
 }

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2042805473088629383}
   m_Layer: 7
   m_Name: Tee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 234828035
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e44a21e1334aeef409fbc382616c7bdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

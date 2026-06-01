@@ -170,8 +170,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -180956805
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c3c48682bb8b0ce41bf6745d0b7a230e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -285,8 +285,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -180956805
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Positions: []
   m_Parameters:
@@ -371,8 +371,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8330839819047010720}
   lr: {fileID: 6521408017334362107}
+  fireExploPrefab: {fileID: 1923628619734891084, guid: a6b587b02b708cc418a280b1df82d4e9, type: 3}
   maxPower: 10
   power: 2
+  speedThreshold: 2
 --- !u!114 &5779448922043608162
 MonoBehaviour:
   m_ObjectHideFlags: 0

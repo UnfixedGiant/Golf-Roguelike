@@ -24,7 +24,10 @@ public class PlayerDamage : MonoBehaviour
     private void TryDealDamage(GameObject target)
     {
         HealthController health = target.GetComponent<HealthController>();
-        if (health == null) return;
+        if (health == null)
+        {
+            return;
+        }
 
         float speed = rb.velocity.magnitude;
         float damage = damageAmount + (speed * damageMultiplier);
