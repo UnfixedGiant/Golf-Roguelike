@@ -13,10 +13,16 @@ public class Ball : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float maxPower = 10f;
     [SerializeField] private float power = 2f;
+    
     [Header("Abilities")]
+    [SerializeField] private bool fireExploUnlock;
     [SerializeField] private float speedThreshold = 2f;
 
+
+
+
     private bool isDragging;
+
 
 
     private void Update()
@@ -79,12 +85,17 @@ public class Ball : MonoBehaviour
         {
             return;
         }
+
         if (rb.velocity.magnitude < speedThreshold)
         {
             return;
         }
 
-        fireExplosion(coll.contacts[0].point);
+        if (!fireExploUnlock)
+        {
+            fireExplosion(coll.contacts[0].point);
+        }
+
 
     }
 

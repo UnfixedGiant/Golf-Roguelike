@@ -32,7 +32,6 @@ public class PlayerDamage : MonoBehaviour
         float speed = rb.velocity.magnitude;
         float damage = damageAmount + (speed * damageMultiplier);
         health.TakeDamage(damage);
-        Debug.Log(damage);
     }
 
 

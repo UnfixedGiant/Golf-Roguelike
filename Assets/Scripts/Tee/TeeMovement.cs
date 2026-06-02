@@ -1,16 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class TeeEnemy : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float rotationSpeed = 200f;
     [SerializeField] private float dashSpeed = 12f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1.5f;
+
+    [Header("Experience")]
+    [SerializeField] private float experienceReward = 25f;
+    private ExperienceController playerXPController;
+
+
 
     private Rigidbody2D rb;
     private InDashRange inDashRange;
@@ -23,6 +31,7 @@ public class TeeEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         inDashRange = GetComponent<InDashRange>();
+        playerXPController = FindObjectOfType<ExperienceController>();
     }
 
 private void FixedUpdate()
@@ -80,6 +89,11 @@ private void FixedUpdate()
 
         yield return new WaitForSeconds(dashCooldown);
         dashOnCooldown = false;
+    }
+
+    public void AddXP()
+    {
+        playerXPController.AddExperience(experienceReward);
     }
 
 

@@ -30,7 +30,6 @@ public class ExplosionDmg : MonoBehaviour
         }
 
         health.TakeDamage(damageAmount);
-        Debug.Log("Explosion Damage: " + damageAmount);
     }
 
 

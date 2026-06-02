@@ -7,6 +7,7 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField] private float currentHealth;
     [SerializeField] private float maximumHealth;
+    
 
     public float RemainingHealthPercentage
     {
@@ -17,7 +18,6 @@ public class HealthController : MonoBehaviour
     }
 
     public bool IsInvincible { get; set; }
-
     public UnityEvent OnDeath;
     public UnityEvent OnDamaged;
 
