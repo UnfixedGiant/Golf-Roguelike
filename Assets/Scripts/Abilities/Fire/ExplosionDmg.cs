@@ -10,6 +10,11 @@ public class ExplosionDmg : MonoBehaviour
     [Header("Damage")]
     [SerializeField] private float damageAmount = 10f;
 
+    public void SetDamage(float dmg)
+    {
+        damageAmount = dmg;
+    }
+
     private void OnTriggerStay2D(Collider2D coll)
     {
         TryDealDamage(coll.gameObject);
@@ -30,10 +35,5 @@ public class ExplosionDmg : MonoBehaviour
 
         health.TakeDamage(damageAmount);
     }
-
-
-
-
-
 
 }

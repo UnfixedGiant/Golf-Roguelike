@@ -14,11 +14,59 @@ public class Ball : MonoBehaviour
     [SerializeField] private float maxPower = 10f;
     [SerializeField] private float power = 2f;
 
+    [Header("Abilities Values")]
+    [SerializeField] private float fireExploBaseDamage = 10f;
+    [SerializeField] private float fireExploDamagePerLevel = 2f;
+     [SerializeField] private float speedThreshold = 2f;
+
     [Header("Abilities")]
-    [SerializeField] private bool fireExploUnlock;
-    [SerializeField] private float speedThreshold = 2f;
+    [SerializeField] private int fireExploLevel = 0;
+    [SerializeField] private int iceNovaLevel = 0;
+    [SerializeField] private int iceNovasomethingLevel = 0;
+
 
     private bool isDragging;
+
+    public int GetAbilityLevel(AbilityType ability)
+    {
+        switch (ability)
+        {
+            case AbilityType.FireExplo:
+                return fireExploLevel;
+
+            case AbilityType.IceNova:
+                return iceNovaLevel;
+
+            case AbilityType.IceNovasomething:
+                return iceNovasomethingLevel;
+
+            default:
+                return 0;
+        }
+    }
+
+    public void UpgradeAbility(AbilityType ability)
+    {
+        switch (ability)
+        {
+            case AbilityType.FireExplo:
+                fireExploLevel++;
+                break;
+
+            case AbilityType.IceNova:
+                iceNovaLevel++;
+                break;
+
+            case AbilityType.IceNovasomething:
+                iceNovasomethingLevel++;
+                break;
+        }
+    }
+
+    public float GetFireExploDamage()
+    {
+        return fireExploBaseDamage + (fireExploDamagePerLevel * fireExploLevel);
+    }
 
     private void Update()
     {
@@ -81,23 +129,20 @@ public class Ball : MonoBehaviour
             return;
         }
 
-        if (rb.velocity.magnitude < speedThreshold)
-        {
-            return;
-        }
-
-        if (!fireExploUnlock)
+        if (fireExploLevel > 0 && rb.velocity.magnitude >= speedThreshold)
         {
             fireExplosion(coll.contacts[0].point);
         }
-
 
     }
 
     private void fireExplosion(Vector2 pos)
     {
-        
+
         GameObject explosion = Instantiate(fireExploPrefab, pos, Quaternion.identity);
+        ExplosionDmg dmg = explosion.GetComponent<ExplosionDmg>();
+        dmg.SetDamage(GetFireExploDamage());
+
         Destroy(explosion, 0.5f);
     }
 
