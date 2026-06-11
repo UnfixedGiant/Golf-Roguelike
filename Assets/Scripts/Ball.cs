@@ -13,17 +13,12 @@ public class Ball : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float maxPower = 10f;
     [SerializeField] private float power = 2f;
-    
+
     [Header("Abilities")]
     [SerializeField] private bool fireExploUnlock;
     [SerializeField] private float speedThreshold = 2f;
 
-
-
-
     private bool isDragging;
-
-
 
     private void Update()
     {
@@ -62,7 +57,7 @@ public class Ball : MonoBehaviour
         Vector2 dir = (Vector2)transform.position - pos;
 
         lr.SetPosition(0, transform.position);
-        lr.SetPosition(1, (Vector2)transform.position + Vector2.ClampMagnitude((dir * power) / 2, maxPower / 2));
+        lr.SetPosition(1, (Vector2)transform.position + Vector2.ClampMagnitude(dir * power / 2, maxPower / 2));
     }
 
     private void DragRelease(Vector2 pos)
@@ -101,10 +96,6 @@ public class Ball : MonoBehaviour
 
     private void fireExplosion(Vector2 pos)
     {
-        if (fireExploPrefab == null)
-        {
-            return;
-        }
         
         GameObject explosion = Instantiate(fireExploPrefab, pos, Quaternion.identity);
         Destroy(explosion, 0.5f);

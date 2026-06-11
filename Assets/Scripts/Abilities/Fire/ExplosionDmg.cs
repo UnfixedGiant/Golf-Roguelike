@@ -10,7 +10,6 @@ public class ExplosionDmg : MonoBehaviour
     [Header("Damage")]
     [SerializeField] private float damageAmount = 10f;
 
-
     private void OnTriggerStay2D(Collider2D coll)
     {
         TryDealDamage(coll.gameObject);

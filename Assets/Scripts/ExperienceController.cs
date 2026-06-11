@@ -36,6 +36,6 @@ public class ExperienceController : MonoBehaviour
         else
         {
             OnExperienceGained.Invoke();
-    }
+        }
     }
 }
